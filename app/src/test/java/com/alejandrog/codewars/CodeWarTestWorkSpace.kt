@@ -159,5 +159,71 @@ class CodeWarTestWorkSpace {
         return listOf(firstStr.toString(), secondStr.toString())
     }
 
+    @Test
+    fun `Create a function that checks if a number n is divisible by two numbers x AND y -- All inputs are positive, non-zero digits`() {
+        assertEquals(false, isDivisible(3, 3, 4))
+        assertEquals(true, isDivisible(12, 3, 4))
+        assertEquals(false, isDivisible(8, 3, 4))
+        assertEquals(true, isDivisible(48, 3, 4))
+        assertEquals(true, isDivisible(100, 5, 10))
+        assertEquals(false, isDivisible(100, 5, 3))
+        assertEquals(true, isDivisible(4, 4, 2))
+        assertEquals(false, isDivisible(5, 2, 3))
+        assertEquals(true, isDivisible(17, 17, 17))
+        assertEquals(true, isDivisible(17, 1, 17))
+    }
 
+    private fun isDivisible(n: Int, x: Int, y: Int): Boolean {
+        return n % x == 0 && n % y == 0
+    }
+
+    @Test
+    fun `In this simple Kata your task is to create a function that turns a string into a Mexican Wave -- You will be passed a string and you must return that string in an array where an uppercase letter is a person standing up`() {
+        assertEquals(listOf("A       b    ", "a       B    "), wave("a       b    "))
+        assertEquals(listOf("This is a few words", "tHis is a few words", "thIs is a few words", "thiS is a few words", "this Is a few words", "this iS a few words", "this is A few words", "this is a Few words", "this is a fEw words", "this is a feW words", "this is a few Words", "this is a few wOrds", "this is a few woRds", "this is a few worDs", "this is a few wordS"), wave("this is a few words"))
+        assertEquals(listOf<String>(), wave(""))
+        assertEquals(listOf(" Gap ", " gAp ", " gaP "), wave(" gap "))
+    }
+
+    private fun wave(str: String): List<String> {
+        val response = arrayListOf<String>()
+        for ((index, element) in str.withIndex()) {
+            if (element.isLetter()) {
+                val strArray = str.toCharArray()
+                strArray[index] = strArray[index].toUpperCase()
+                response.add(String(strArray))
+            }
+        }
+        return response
+    }
+
+    @Test
+    fun `Find the total sum of internal angles (in degrees) in an n-sided simple polygon -- N will be greater than 2`() {
+        assertEquals(180, angle(3))
+        assertEquals(360, angle(4))
+    }
+
+    private fun angle(value: Int): Int {
+        return (value - 2) * 180
+    }
+
+    @Test
+    fun `You will be given a prime number p and your task is to find the smallest positive integer n such that p's divisibility testing is n-sum or n-alt-sum`() {
+        assertEquals("1-sum", solve(3))
+        assertEquals("3-altsum", solve(7))
+        assertEquals("1-altsum", solve(11))
+        assertEquals("3-altsum", solve(13))
+        assertEquals("3-sum", solve(37))
+        assertEquals("23-altsum", solve(47))
+        assertEquals("4-altsum", solve(73))
+        assertEquals("7-sum", solve(239))
+        assertEquals("47006-altsum", solve(376049))
+        assertEquals("499941-sum", solve(999883))
+        assertEquals("12350861-sum", solve(24701723))
+        assertEquals("11484850-altsum", solve(45939401))
+    }
+
+    private fun solve(prime: Int): String {
+        return ""
+    }
 }
