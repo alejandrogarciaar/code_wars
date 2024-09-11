@@ -206,24 +206,4 @@ class CodeWarTestWorkSpace {
     private fun angle(value: Int): Int {
         return (value - 2) * 180
     }
-
-    @Test
-    fun `You will be given a prime number p and your task is to find the smallest positive integer n such that p's divisibility testing is n-sum or n-alt-sum`() {
-        assertEquals("1-sum", solve(3))
-        assertEquals("3-altsum", solve(7))
-        assertEquals("1-altsum", solve(11))
-        assertEquals("3-altsum", solve(13))
-        assertEquals("3-sum", solve(37))
-        assertEquals("23-altsum", solve(47))
-        assertEquals("4-altsum", solve(73))
-        assertEquals("7-sum", solve(239))
-        assertEquals("47006-altsum", solve(376049))
-        assertEquals("499941-sum", solve(999883))
-        assertEquals("12350861-sum", solve(24701723))
-        assertEquals("11484850-altsum", solve(45939401))
-    }
-
-    private fun solve(prime: Int): String {
-        return ""
-    }
 }
