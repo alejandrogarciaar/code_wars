@@ -150,4 +150,67 @@ class HackerRankWorkSpace {
             }
         }
     }
+
+    @Test
+    fun `Fizz Buzz`() {
+        fizzBuzz(15)
+    }
+
+    private fun fizzBuzz(n: Int): Unit {
+        for (value in 1..n) {
+            if (value % 3 == 0 && value % 5 == 0) {
+                println("FizzBuzz")
+            } else {
+                if (value % 3 == 0) {
+                    println("Fizz")
+                } else if (value % 5 == 0) {
+                    println("Buzz")
+                } else {
+                    println(value)
+                }
+            }
+        }
+    }
+
+
+    @Test
+    fun `Get Stat For Requests`() {
+        getStatForRequests(
+            3,
+            arrayOf(
+                "0 sdsf www.google.com",
+                "1 juytf www.google.com",
+                "0 opoit www.kagle.com"
+            ),
+            arrayOf("juytf", "sdsf", "opoit")
+        )
+    }
+
+    private fun getStatForRequests(m: Int, database: Array<String>, requests: Array<String>): Array<Array<String>> {
+        val result = mutableListOf<Array<String>>()
+        val usersAndUsage = mutableMapOf<String, Int>()
+        val mapDatabase = mutableMapOf<String, Pair<String, String>>()
+
+        // Populate database
+        for (entry in database) {
+            val userId = entry.split(" ")[0]
+            val shortUrl = entry.split(" ")[1]
+            val largeUrl = entry.split(" ")[2]
+
+            // Short url -> Large url
+            mapDatabase[shortUrl] = Pair(largeUrl, userId)
+
+            // Add users
+            usersAndUsage[userId] = 0
+        }
+
+        // Populate result
+        for (request in requests) {
+            val largeUrl = mapDatabase[request]?.first.orEmpty()
+            val userId = mapDatabase[request]?.second.orEmpty()
+            usersAndUsage[userId] = (usersAndUsage[userId] ?: 0) + 1
+            result.add(arrayOf(largeUrl, usersAndUsage[userId].toString()))
+        }
+        return result.toTypedArray()
+    }
 }
